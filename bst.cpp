@@ -22,12 +22,6 @@
  * =====================================================================================
  */
 
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  calcularComparacionesPromedio
- *  Description:  
- * =====================================================================================
- */
 #include <iostream>
 #include <iomanip>
 
@@ -68,6 +62,26 @@ int calculateTotalNodes ( int rootRow, int rootColumn )
 	}
 
 }		
+int calculateHeight( int rootRow, int rootColumn )
+{
+	int heightLeft = 0, heightRight = 0;
+	int left, right; 
+	if(matrix[rootRow][rootColumn]!=0){
+		left = leftNode(rootRow,rootColumn);
+		right = rightNode(rootRow,rootColumn);
+		if(matrix[rootRow][left]!=0){
+			heightLeft = calculateHeight( rootRow, left ); 
+		}
+		if(matrix[right][rootColumn]!=0){
+			heightRight = calculateHeight( right, rootColumn );
+		}
+
+		return ( (heightLeft>heightRight) ? heightLeft+1:heightRight+1 ); 
+	}else{
+		return 0;
+	}
+
+}
 double calculateAverageComparisons ( int rootRow,  int rootColumn, int totalNodes, int comparisons )
 {
 	if (matrix[rootRow][rootColumn]!=0) {
@@ -97,7 +111,7 @@ int main(int argc, const char *argv[])
 		
 		int totalNodes = calculateTotalNodes( 0, columns-1 );
 		cout<<totalNodes<<endl;
-		int height = matrixOrder/2 - 1;
+		int height = calculateHeight(0, columns-1);
 		double averageComparisons = calculateAverageComparisons( 0, columns-1, totalNodes, 1 );
 		
 		cout<<"The height of the BST is: "<<height<<endl;
