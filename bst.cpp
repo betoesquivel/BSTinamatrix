@@ -121,6 +121,7 @@ int main(int argc, const char *argv[])
 
 		cin>>matrixOrder;
 		rows = columns = matrixOrder;
+		caseNum++;	
 	}	
 	return 0;
 }
