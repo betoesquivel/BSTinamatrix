@@ -100,7 +100,8 @@ int main(int argc, const char *argv[])
 	int matrixOrder;
 	cin>>matrixOrder;
 	rows = columns = matrixOrder;
-
+	
+	int caseNum = 1;
 	while(matrixOrder!=-1)
 	{
 		for (int r = 0; r < rows; r++) {
@@ -110,10 +111,10 @@ int main(int argc, const char *argv[])
 		}
 		
 		int totalNodes = calculateTotalNodes( 0, columns-1 );
-		cout<<totalNodes<<endl;
 		int height = calculateHeight(0, columns-1);
 		double averageComparisons = calculateAverageComparisons( 0, columns-1, totalNodes, 1 );
 		
+		cout<<"Case "<<caseNum<<":"<<endl;
 		cout<<"The height of the BST is: "<<height<<endl;
 		cout<<setprecision(2);
 		cout<<"The average of the search in the BST is: "<<fixed<<averageComparisons<<endl;
